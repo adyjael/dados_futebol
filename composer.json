@@ -1,0 +1,22 @@
+{
+    "name": "adyja/api_futebol",
+    "description": "Projeto para mostrar dados de jogadores",
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "config.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "adyjael",
+            "email": "adyjaelneto66@gmail.com"
+        }
+    ],
+    "require": {
+        "coffeecode/router": "2.0.*",
+        "statickidz/php-google-translate-free": "^1.2"
+    }
+}

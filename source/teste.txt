@@ -1,0 +1,255 @@
+ <div class="row player-honours w-50 mt-2" style="float: left;">
+        <h3 class="verde fw-bold" style="color:#002776 !important;">Premios na carreira(<?= count($PlayerHonours) ?>)
+            <a class="btn btn-info" href="?vertudo">Ver tudo</a>
+        </h3>
+        <table class="table bg-white table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Temporada</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Time logo</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php if (isset($_GET["vertudo"])) {  ?>
+                    <?php foreach ($PlayerHonours as $honours) : ?>
+
+                        <tr>
+                            <th><?= $honours->strSeason  ?></th>
+                            <td><?= $honours->strHonour  ?></td>
+                            <td><?= $honours->strTeam  ?></td>
+                            <td><img width="30px" src="<?= Teams::getImageTeanById($honours->idTeam);  ?>" alt=""></td>
+                        </tr>
+                    <?php endforeach;  ?>
+                    <?php } else {
+                    for ($i = 0; $i < 11; $i++) : ?>
+                        <tr>
+                            <th><?= $PlayerHonours[$i]->strSeason  ?></th>
+                            <td><?= $PlayerHonours[$i]->strHonour  ?></td>
+                            <td><?= $PlayerHonours[$i]->strTeam  ?></td>
+                            <td><img width="30px" src="<?= Teams::getImageTeanById($PlayerHonours[$i]->idTeam);  ?>" alt=""></td>
+                        </tr>
+                <?php endfor;
+                } ?>
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="player-tumb">
+        <div class="player-tumb-img">
+            <img class="lazyload" data-src="<?= $PlayerDetails->strThumb ? $PlayerDetails->strThumb : URL_BASE . "/assets/img/player-default.png" ?>" alt="">
+        </div>
+        <div class="player-tumb-details">
+
+            <h3 class="fw-bold" style="color:#002776;">Nome: <span class="text-white"><?= $PlayerDetails->strNumber ?> <?= $PlayerDetails->strPlayer ?></span></h3>
+            <h3 class="fw-bold" style="color:#002776;">Volor de mercado: <span class="fw-bold text-white"><?= $PlayerDetails->strSigning ?? "não definido" ?> </span></h3>
+            <h3 class="fw-bold" style="color:#002776;">Nacionalidade: <span class="fw-bold text-white"><?= $PlayerDetails->strNationality ?></span></h3>
+            <h3 class="fw-bold" style="color:#002776;">Time: <span class="fw-bold text-white"><?= $PlayerDetails->strTeam == "_Free Agent Soccer" ? "Desmpregado" : $PlayerDetails->strTeam  ?>
+                    <a href="<?= URL_BASE ?>/times/<?= $PlayerDetails->idTeam  ?>"> <img class="lazyload" width="50px" data-src="<?= Teams::getImageTeanById($PlayerDetails->idTeam)  ?>" alt=""></a></span></h3>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<section class="container">
+
+    <h3 class="fw-bold">Sobre o <?= $PlayerDetails->strPlayer  ?></h3>
+    <p style="font-size: 18px;">
+        <?= substr($PlayerDetails->strDescriptionPT ?? $PlayerDetails->strDescriptionEN, 0, 900) . "..." ?>
+    </p>
+    <div class="player-former">
+        <h3 class="verde fw-bold" style="color:#002776 !important;">Carreira</h3>
+
+
+        <div class="row d-flex ">
+
+            <?php
+            if ($PlayerFormerTeams != null) :
+                foreach ($PlayerFormerTeams as $player) : ?>
+
+                    <div class="col-md-2 mt-2">
+
+                        <div class="card w-100" style="max-width: 15rem;">
+                            <a href="<?= URL_BASE ?>/times/<?= $player->idFormerTeam ?>">
+                                <img data-src="<?= $player->idFormerTeam ? Teams::getImageTeanById($player->idFormerTeam) : URL_BASE . "/assets/img/user_padrao.png"  ?>" class="card-img-top lazyload" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-title  fw-bold"><?= $player->strFormerTeam ?> </span> <br>
+                                <span class="card-text mt-4"><?= $player->strJoined ?> </span> - <span><?= $player->strDeparted ? $player->strDeparted : "Atual" ?></span>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach;
+            else : ?>
+                Não existe informações para este jogador
+            <?php endif;  ?>
+        </div>
+    </div>
+
+
+    <div class=" player-honours mt-2">
+
+
+
+        <h3 class="verde fw-bold" style="color:#002776 !important;">Premios no jogo</h3>
+        <?php if ($playerConquistas != null) :  ?>
+
+            <div class="row ">
+                <?php if (isset($_GET["vermais"]) && count($playerConquistas) > 6) {  ?>
+                    <?php foreach ($playerConquistas as $player) : ?>
+
+                        <div class="col-md-2 mb-2">
+
+                            <div class="card w-100" style="max-width: 15rem;">
+                                <img data-src="<?= $player->strMilestoneLogo ?>" class="card-img-top lazyload" alt="...">
+                                <div class="card-body">
+                                    <span class="card-title  fw-bold"><?= $player->strTeam ?> </span> <br>
+                                    <span class="card-text mt-4"><?= $player->dateMilestone ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach;
+                } else if (count($playerConquistas) <= 6) { ?>
+
+                    <?php for ($i = 0; $i < count($playerConquistas); $i++) :  ?>
+
+                        <div class="col-md-2 mb-2">
+
+                            <div class="card w-100" style="max-width: 15rem;">
+                                <img data-src="<?= $playerConquistas[$i]->strMilestoneLogo ?>" class="card-img-top lazyload" alt="...">
+                                <div class="card-body">
+                                    <span class="card-title  fw-bold"><?= $playerConquistas[$i]->strTeam ?> </span> <br>
+                                    <span class="card-text mt-4"><?= $playerConquistas[$i]->dateMilestone ?></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endfor;  ?>
+
+                <?php } else {  ?>
+
+
+                    <?php for ($i = 0; $i < 6; $i++) :  ?>
+
+                        <div class="col-md-2 mb-2">
+
+                            <div class="card w-100" style="max-width: 15rem;">
+                                <img data-src="<?= $playerConquistas[$i]->strMilestoneLogo ?>" class="card-img-top lazyload" alt="...">
+                                <div class="card-body">
+                                    <span class="card-title  fw-bold"><?= $playerConquistas[$i]->strTeam ?> </span> <br>
+                                    <span class="card-text mt-4"><?= $playerConquistas[$i]->dateMilestone ?></span>
+                                </div>
+                            </div>
+                        </div>
+
+                <?php endfor;
+                } ?>
+            </div>
+        <?php else : ?>
+            Não exite muitas informações para este jogador
+
+        <?php endif;  ?>
+
+    </div>
+
+
+    <h3 class="verde fw-bold" style="color:#002776 !important;">Contratos</h3>
+
+    <?php if ($playerContracts != null) :  ?>
+        <div class="player-contracts row">
+            <?php foreach ($playerContracts as $player) :  ?>
+
+                <div class="col-md-3">
+                    <div class="card w-100" style="max-width: 15rem;">
+                        <img src="<?= $player->strTeamBadge ?>" class="card-img-top lazyload" alt="...">
+                        <div class="card-body">
+                            <span class="card-title  fw-bold"><?= $player->strTeam ?> </span> <br>
+                            <span class="card-text mt-4">Inicio: <?= $player->strYearStart ?></span> <br>
+                            <span class="card-text mt-4">Fim: <?= $player->strYearEnd ?></span>
+                        </div>
+                    </div>
+                </div>
+
+
+            <?php endforeach;
+        else :  ?>
+            Não existe informaçõpes suficientes para este jogadpr
+        </div>
+    <?php endif; ?>
+
+
+
+
+
+    <h3 class="verde fw-bold" style="color:#002776 !important;">Imagem do <?= $PlayerDetails->strPlayer  ?></h3>
+    <div class="player-artes d-flex justify-content-center mt-2 row">
+
+        <div class="col-md-6 mb-2">
+            <img class="lazyload" width="50%" data-src="<?= $PlayerDetails->strRender  ?>" alt="">
+        </div>
+        <div class="col-md-6 mb-2">
+            <img class="lazyload" width="50%" data-src="<?= $PlayerDetails->strCutout  ?>" alt="">
+        </div>
+        <div class="col-md-6 mb-2">
+            <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart1  ?>" alt="">
+        </div>
+        <div class="col-md-6 mb-2">
+            <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart2  ?>" alt="">
+        </div>
+        <div class="col-md-6 mb-2">
+            <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart3  ?>" alt="">
+        </div>
+        <div class="col-md-6 mb-2">
+            <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart4  ?>" alt="">
+        </div>
+        <div class="col-md-12">
+            <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strBanner  ?>" alt="">
+        </div>
+
+
+    </div>
+
+
+
+
+</section>
