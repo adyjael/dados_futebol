@@ -38,7 +38,7 @@ $tradutor = new GoogleTranslate;
 
 
   <div class="row g-4">
-    <?php if (!empty($times)) { ?>
+    <?php if (empty($times)) { ?>
       <?php if (isset($timesByName["teams"]) && !empty($timesByName["teams"])) { ?>
         <?php foreach ($timesByName["teams"] as $times) :  ?>
 
@@ -102,7 +102,7 @@ $tradutor = new GoogleTranslate;
 
     <?php endforeach;
     } else {
-      echo "ola";
+
     } ?>
 
 
