@@ -21,10 +21,6 @@ class TimesController extends Web
             $parametros = array();
         }
 
-
-
-
-
         $this->view(
             [
                 "header",

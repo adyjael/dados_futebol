@@ -36,10 +36,9 @@ $tradutor = new GoogleTranslate;
 
 <section class="players_search container">
 
-  <!-- <img width="100%"  src="https://www.zerozero.pt/img/jogadores/68/112468_pri_mirza_mesic.jpg" class="card-img-top" alt="..."> -->
 
   <div class="row g-4">
-    <?php if (empty($times)) { ?>
+    <?php if (!empty($times)) { ?>
       <?php if (isset($timesByName["teams"]) && !empty($timesByName["teams"])) { ?>
         <?php foreach ($timesByName["teams"] as $times) :  ?>
 
@@ -62,7 +61,7 @@ $tradutor = new GoogleTranslate;
 
         <?php endforeach;
       } else { ?>
-        <h4 class="text-center">Não encontramos nenhum time com o nome: <span class=" fw-bold"> <?= $_GET["name"] ?></span></h4>
+        <h4 class="text-center">Não encontramos nenhum time com o nome: <span class=" text-white fw-bold"> <?= $_GET["name"] ?></span></h4>
       <?php } ?>
 
     <?php } elseif (isset($times["countries"]) && !empty($times["countries"])) {

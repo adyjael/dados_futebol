@@ -104,7 +104,7 @@ $nextGames = Teams::getNextGamesByTeamId($time->idTeam)["events"];
                 <?php else :  ?>
 
 
-                    erro
+                <p >Não conseguimos encontrar informações</p>
 
                 <?php endif;  ?>
 
@@ -149,23 +149,4 @@ $nextGames = Teams::getNextGamesByTeamId($time->idTeam)["events"];
 
     </div>
 
-
-
-
 </section>
-<pre>
-    <?php
-
-    if ($nextGames != null) {
-        print_r($nextGames);
-    }
-    ?>
-</pre>
-<pre>
-    <?php
-
-    if ($time != null) {
-        print_r($time);
-    }
-    ?>
-</pre>
