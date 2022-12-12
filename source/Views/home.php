@@ -10,7 +10,7 @@ $tradutor = new GoogleTranslate;
 
 <main id="content">
   <div class="actions">
-    <form id="searchForm" action="<?= URL_BASE ?>" class="actions__form">
+    <form id="searchForm">
       <label for="searchInput" hidden="">Search for a country…</label>
       <input id="searchInput" name="search" placeholder="Search for a player...">
       <button id="search" type="submit"><img src="https://img.icons8.com/glyph-neue/128/search--v1.png" alt="find icon"></button>
