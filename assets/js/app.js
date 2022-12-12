@@ -25,7 +25,7 @@ $('#league').on('change', function () {
 
 const URL_BASE = "https://futebol.herokuapp.com"
 
-$("#search").on("click", function (e) {
+$("#searchForm").on("submit", function (e) {
   e.preventDefault();
   var strPlayer = $("#searchInput").val();
   document.querySelector(".res").style.display = "none"

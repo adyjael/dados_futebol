@@ -13,7 +13,6 @@ if (isset($PlayerDetails["players"]) && !empty($PlayerDetails["players"])) {
 }
 
 
-
 ?>
 
 <main id="content" style="height: 286rem;">
