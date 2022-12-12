@@ -12,116 +12,207 @@ if (isset($PlayerDetails["players"]) && !empty($PlayerDetails["players"])) {
     $playerContracts = Player::getContractsByPlayerId($PlayerDetails->idPlayer)["contracts"];
 }
 
+
+
 ?>
 
-<section class="container team-details">
+<main id="content" style="height: 286rem;">
+
+    <div id="countryDetails" class="country-details">
+        <form>
+
+            <button id="backButton" onClick="JavaScript: window.history.back();" type="button" class="country-details__button">
+                Back
+            </button>
+        </form>
+
+        <?php if ($PlayerDetails != null) :  ?>
 
 
-    <div class="player-sobre pt-3">
-        <h3 id="sobre" style="font-size:40px;" class="fw-bold  text-center mt-2 mb-2">Sobre o <?= $PlayerDetails->strPlayer ?></h3>
-        <p><?= substr($PlayerDetails->strDescriptionEN, 0, 1200) ?>...</p>
-    </div>
+            <article class="country-details__article">
+                <div class="country-details__img">
+                    <img width="560" height="400" src="<?= $PlayerDetails->strThumb ?>" alt="Mauritania">
+                </div>
+                <div class="country-details__info">
+                    <h1 class="country-details__info-title"><?= $PlayerDetails->strPlayer ?></h1>
+                    <div class="country-details__info-lists">
+                        <ul class="country-details__info-list">
+                            <li class="country-details__info-item">
+                                <span>Nacionalidade: </span> <?= $PlayerDetails->strNationality ?>
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Valor no mercado: </span> <?= $PlayerDetails->strSigning ?>
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Team: </span><?= $PlayerDetails->strTeam ?>
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Position: </span> <?= $PlayerDetails->strPosition ?>
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Kit: </span> <?= $PlayerDetails->strKit ?>
+                            </li>
+                        </ul>
 
-    <div class="player-carreiras mt-5" id="">
-        <h3 id="carreira" style="font-size:40px;" class="fw-bold  text-center">Carreira</h3>
-
-        <?php if ($PlayerFormerTeams != null) :  ?>
-            <div class="row card-player-carreiras">
-
-                <?php foreach ($PlayerFormerTeams as $player) :  ?>
-
-                    <div>
-                        <img data-src="<?= Teams::getImageTeanById($player->idFormerTeam) ? Teams::getImageTeanById($player->idFormerTeam) : URL_BASE . "/assets/img/default.webp" ?>" class="card-img-top lazyload" alt="...">
-                        <span><?= $player->strJoined ?> - <?= $player->strDeparted ? $player->strDeparted : "Atual" ?></span>
                     </div>
 
-                <?php endforeach;  ?>
-
-            </div>
-        <?php else :  ?>
-
-            <p class="text-center">Não encontramos informações suficiente para este jogador</p>
-
-        <?php endif  ?>
-    </div>
-
-
-    <div class="player-premios mt-5" id="">
-        <h3 id="premios" style="font-size:40px;" class="fw-bold  text-center mt-2 mb-2">Premios no jogo</h3>
-
-        <?php if ($playerConquistas != null) :  ?>
-            <div class="row card-player-carreiras">
-
-                <?php foreach ($playerConquistas as $player) :  ?>
-
-                    <div>
-                        <img data-src="<?= $player->strMilestoneLogo ?>" class="card-img-top lazyload" alt="...">
-                        <p><?= $player->strTeam ?></p>
-                        <span><?= $player->dateMilestone ?></span>
+                    <div class="country-details__border-countries">
+                        <h2 class="country-details__border-countries-title">
+                            Outros:
+                        </h2>
+                        <ul class="country-details__border-countries-list">
+                            <li class="country-details__border-countries-item">Carreira</li>
+                            <li class="country-details__border-countries-item">Contratos</li>
+                            <li class="country-details__border-countries-item">Premios</li>
+                            <li class="country-details__border-countries-item">Artes</li>
+                        </ul>
                     </div>
 
-                <?php endforeach;  ?>
-
-            </div>
-
-
-        <?php else :  ?>
-
-            <p class="text-center">Não encontramos informações suficiente para este jogador</p>
-
-        <?php endif  ?>
-
-    </div>
-
-    <div class="player-contracts mt-5" id="">
-        <h3 id="contrtos" style="font-size:40px;" class="fw-bold  text-center mt-2 mb-2">Contratos do <?= $PlayerDetails->strPlayer ?></h3>
-
-        <?php if ($playerContracts != null) :  ?>
-            <div class="row card-player-carreiras">
-
-                <?php foreach ($playerContracts as $player) :  ?>
-
-                    <div>
-                        <img data-src="<?= $player->strTeamBadge ?>" class="card-img-top lazyload" alt="...">
-                        <p><?= $player->strTeam ?></p>
-                        <span><?= $player->strYearStart ?> - <?= $player->strYearEnd  ?></span>
-                    </div>
-
-                <?php endforeach;  ?>
-
-            </div>
-
+                </div>
+            </article>
 
         <?php else :  ?>
 
-            <p class="text-center">Não encontramos informações suficiente para este jogador</p>
+            <p class="text-center">Não consegumos encontrar informações suficientes para este jogador</p>
 
-        <?php endif  ?>
-
-    </div>
-</section>
-<div id="artes" class="player-artes d-flex justify-content-center mt-2 row">
-    <div class="col-md-6 mb-2">
-        <img class="lazyload" width="50%" data-src="<?= $PlayerDetails->strRender  ?>" alt="">
-    </div>
-    <div class="col-md-6 mb-2">
-        <img class="lazyload" width="50%" data-src="<?= $PlayerDetails->strCutout  ?>" alt="">
-    </div>
-    <div class="col-md-6 mb-2">
-        <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart1  ?>" alt="">
-    </div>
-    <div class="col-md-6 mb-2">
-        <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart2  ?>" alt="">
-    </div>
-    <div class="col-md-6 mb-2">
-        <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart3  ?>" alt="">
-    </div>
-    <div class="col-md-6 mb-2">
-        <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strFanart4  ?>" alt="">
-    </div>
-    <div class="col-md-12">
-        <img class="lazyload" width="100%" data-src="<?= $PlayerDetails->strBanner  ?>" alt="">
-    </div>
+        <?php endif; ?>
 
 
-</div>
+        <article id="Carreiras" class="mt-5">
+            <h3 class="text-center">Carreira do <?= $PlayerDetails->strPlayer ?></h3>
+
+            <section id="countriesContainer" class="countries-container mt-5">
+
+                <?php if ($PlayerFormerTeams != null) : ?>
+                    <?php foreach ($PlayerFormerTeams as $player) : ?>
+
+                        <article class="countries-container__card none">
+                            <img width="100%" src="<?= Teams::getImageTeanById($player->idFormerTeam) ? Teams::getImageTeanById($player->idFormerTeam) : URL_BASE . "/assets/img/default.webp" ?>" alt="Mauritania" loading="lazy">
+
+                            <div class="countries-container__card-info">
+                                <h1 class="countries-container__card-title"><?= $player->strFormerTeam ?></h1>
+                                <p><?= $player->strJoined ?> - <?= $player->strDeparted ? $player->strDeparted : "Atual" ?></p>
+                            </div>
+                        </article>
+
+                    <?php endforeach; ?>
+                <?php else : ?>
+
+                    <p class="text-center">Não conseguimos encontrar informações suficientes para este jopgador</p>
+
+                <?php endif; ?>
+
+
+
+            </section>
+        </article>
+
+        <article id="Contratos" class="mt-5">
+            <h3 class="text-center">Contratos do <?= $PlayerDetails->strPlayer ?></h3>
+
+            <section id="countriesContainer" class="countries-container mt-5">
+
+                <?php if ($playerContracts != null) :  ?>
+                    <?php foreach ($playerContracts as $player) :  ?>
+
+
+                        <article class="countries-container__card none">
+                            <img width="100%" src="<?= $player->strTeamBadge ?>" alt="Mauritania" loading="lazy">
+
+                            <div class="countries-container__card-info">
+                                <h1 class="countries-container__card-title"><?= $player->strTeam ?></h1>
+                                <p>Inicio: <?= $player->strYearStart ?></p>
+                                <p>Fime: <?= $player->strYearEnd  ?></p>
+                            </div>
+                        </article>
+
+
+                    <?php endforeach;  ?>
+                <?php else : ?>
+                    <p class="text-center">Não conseguimos encontrar informações suficientes para este jopgador</p>
+                <?php endif; ?>
+
+
+
+            </section>
+        </article>
+
+        <article id="Premios" class="mt-5">
+                <h3 class="text-center">Premios do <?= $PlayerDetails->strPlayer ?></h3>
+
+                <section id="countriesContainer" class="countries-container mt-5">
+
+
+                <?php if ($playerConquistas != null) : ?>
+                    <?php foreach ($playerConquistas as $player) : ?>
+
+                        <article class="countries-container__card none">
+                            <img width="100%" src="<?= $player->strMilestoneLogo ?>" alt="Mauritania" loading="lazy">
+
+                            <div class="countries-container__card-info">
+                                <h1 class="countries-container__card-title"><?= $player->strTeam ?></h1>
+                                <p><?= $player->dateMilestone ?></p>
+                            </div>
+                        </article>
+
+                    <?php endforeach; ?>
+                <?php else : ?>
+
+                    <p class="text-center">Não conseguimos encontrar informações suficientes para este jopgador</p>
+
+                <?php endif; ?>
+                    
+                    
+                </section>
+            </article>
+
+            <article id="Artes" class="mt-5 row">
+                <h3 class="text-center">Artes do <?= $PlayerDetails->strPlayer ?></h3>
+                <div class="col-md-6">
+                    <img width="60%"  src="<?=$PlayerDetails->strRender ?>" alt="">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="60%"  src="<?=$PlayerDetails->strCutout ?>" alt="">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="<?=$PlayerDetails->strFanart1 ?>" alt="">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="<?=$PlayerDetails->strFanart2 ?>" alt="">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="<?=$PlayerDetails->strFanart3 ?>" alt="">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="<?=$PlayerDetails->strFanart4 ?>" alt="">
+                    
+                </div>
+            
+
+            </article>
+
+
+
+
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -48,9 +48,8 @@ class HomeController extends Web
     public function teste(){
 
         $this->view([
-            "header",
             "teste",
-            "footer"
+            
         ]);
 
     }

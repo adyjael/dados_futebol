@@ -10,16 +10,21 @@ class TimesController extends Web
 {
     public function allTimes()
     {
-        $league = "English Premier League";
-        if (isset($_GET["league"]) && !empty($_GET["league"])) {
-            $league = $_GET["league"];
-        }
-        $parametros = Leagues::searchAllTimesByLeagueName($league);
+
+        $realMadrid = Teams::getTeamPopulares(133738);
+        $barcelona = Teams::getTeamPopulares(133739);
+        $flamengo = Teams::getTeamPopulares(134287);
+        $liverpool = Teams::getTeamPopulares(133602);
+        $mancity = Teams::getTeamPopulares(133613);
+        
+        $popularesTeams = [$realMadrid,$barcelona,$flamengo,$liverpool,$mancity];
+
         $timesByname = "";
         if (isset($_GET["name"]) && !empty($_GET["name"])) {
             $timesByname = Teams::searchTimesByName($_GET["name"]);
-            $parametros = array();
         }
+
+        
 
         $this->view(
             [
@@ -29,8 +34,8 @@ class TimesController extends Web
             ],
             [
                 "titulo" => "Times",
-                "times" => $parametros,
                 "timesByName" => $timesByname,
+                "popularesTeams" => $popularesTeams,
             ]
         );
     }
@@ -44,7 +49,6 @@ class TimesController extends Web
 
         $this->view([
             "header",
-            "section_team",
             "time",
             "footer"
         ], [

@@ -1,97 +1,168 @@
-<section class="header-team container">
+<!DOCTYPE html>
+<html lang="pt-PT">
 
-    <div class="baner-team">
-        <div class="team-img">
-            <img width="100%" src="https://www.thesportsdb.com/images/media/player/render/yl9dgj1615119732.png" alt="">
-        </div>
-        <div class="team-info">
-            <h2>Neymar</h2>
-            <span>Brasil - Barcelona</span>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= URL_BASE  ?>/assets/css/teste.css">
+    <link rel="icon" type="image/x-icon" href="<?php echo isset($logo) ? $logo : URL_BASE . "/assets/img/bola.png"  ?>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&amp;display=swap" rel="stylesheet">
+    <title><?php echo isset($titulo) ? $titulo : "Futebol"  ?></title>
+</head>
+
+<body>
+
+
+    <header class="topo">
         <nav>
             <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#estadio">Carreira</a></li>
-                <li><a href="#players">Premios</a></li>
-                <li><a href="#lastGames">Contratos</a></li>
-                <li><a href="#nextGames">Artes</a></li>
+                <li><a href="#">Jogadores</a></li>
+                <li><a href="#">Times</a></li>
             </ul>
         </nav>
-    </div>
+    </header>
 
-</section>
-<section class="container team-details">
+    <main id="content" style="height: 226rem;">
+
+        <div id="countryDetails" class="country-details">
+            <form>
+
+                <button id="backButton" onClick="JavaScript: window.history.back();" type="button" class="country-details__button">
+                    Back
+                </button>
+
+            </form>
+            <article class="country-details__article">
+                <div class="country-details__img">
+                    <img width="560" height="400" src="https://www.thesportsdb.com/images/media/player/thumb/ino2iw1600892848.jpg" alt="Mauritania">
+                </div>
+                <div class="country-details__info">
+                    <h1 class="country-details__info-title">Messi</h1>
+                    <div class="country-details__info-lists">
+                        <ul class="country-details__info-list">
+                            <li class="country-details__info-item">
+                                <span>Nacionalidade: </span> Argentina
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Valor no mercado: </span> 5666 mil €
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Team: </span>Barcelona
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Position: </span> Forward
+                            </li>
+                            <li class="country-details__info-item">
+                                <span>Genero: </span>Male
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="country-details__border-countries">
+                        <h2 class="country-details__border-countries-title">
+                            Outros:
+                        </h2>
+                        <ul class="country-details__border-countries-list">
+                            <li class="country-details__border-countries-item">Carreira</li>
+                            <li class="country-details__border-countries-item">Contratos</li>
+                            <li class="country-details__border-countries-item">Premios</li>
+                            <li class="country-details__border-countries-item">Artes</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </article>
 
 
-    <div class="player-sobre pt-3" id="sobre">
-        <h3 class="fw-bold">Sobre o Neymar</h3>
-        <p>Neymar da Silva Santos Júnior (Brazilian Portuguese: ; born 5 February 1992), known as Neymar, is a Brazilian professional footballer who plays as a forward for Ligue 1 club Paris Saint-Germain and the Brazil national team. He is widely regarded as one of the best players in the world. Neymar came into prominence at Santos, where he made his professional debut aged 17. He helped the club win two successive Campeonato Paulista championships, a Copa do Brasil, and the 2011 Copa Libertadores; the latter being Santos' first since 1963. Neymar was twice named the South American Footballer of the Year, in 2011 and 2012, and soon relocated to Europe to join Barcelona. As part of Barcelona's attacking trio with Lionel Messi and Luis Suárez, he won the continental treble of La Liga, the Copa del Rey, and the UEFA Champions League, and finished third for the FIFA Ballon d'Or in 2015 for his performances. He then attained a domestic double in the 2015–16 season. In 2017, Neymar transferred to Paris Saint-Germain in a move worth €222 million, making him the most expensive player ever. In France, Neymar won three league titles, two Coupe de France, and two Coupe de la Ligue, which incl...</p>
-    </div>
+            <article id="Carreiras" class="mt-5">
+                <h3 class="text-center">Carreira do Messi</h3>
 
-    <div class="player-carreiras">
-        <h3 class="fw-bold">Carreira</h3>
+                <section id="countriesContainer" class="countries-container mt-5">
 
 
-        <div class="row card-player-carreiras">
+                    <article class="countries-container__card none">
+                        <img width="100%"  src="https://www.thesportsdb.com/images/media/team/badge/28p13b1639480297.png" alt="Mauritania" loading="lazy">
+
+                        <div class="countries-container__card-info">
+                            <h1 class="countries-container__card-title">Barcelona</h1>
+                          <p>2017-2019</p>
+                        </div>
+                    </article>
 
 
+                </section>
+            </article>
+            <article id="Contratos" class="mt-5">
+                <h3 class="text-center">Contratos do Messi</h3>
 
-            <div>
-                <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                <span>2000-2005</span>
-            </div>
-            <div>
-                <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                <span>2000-2005</span>
-            </div>
-            <div>
-                <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                <span>2000-2005</span>
-            </div>
-            <div>
-                <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                <span>2000-2005</span>
-            </div>
+                <section id="countriesContainer" class="countries-container mt-5">
+
+
+                    <article class="countries-container__card none">
+                        <img width="100%"  src="https://www.thesportsdb.com/images/media/team/badge/28p13b1639480297.png" alt="Mauritania" loading="lazy">
+                        
+                        <div class="countries-container__card-info">
+                            <h1 class="countries-container__card-title">Barcelona</h1>
+                            <p>2017-2019</p>
+                        </div>
+                    </article>
+                    
+                    
+                </section>
+            </article>
+            <article id="Premios" class="mt-5">
+                <h3 class="text-center">Premios do Messi</h3>
+
+                <section id="countriesContainer" class="countries-container mt-5">
+
+
+                    <article class="countries-container__card none">
+                        <img width="100%"  src="https://www.thesportsdb.com/images/media/team/badge/28p13b1639480297.png" alt="Mauritania" loading="lazy">
+                        
+                        <div class="countries-container__card-info">
+                            <h1 class="countries-container__card-title">Barcelona</h1>
+                            <p>2017-2019</p>
+                        </div>
+                    </article>
+                    
+                    
+                </section>
+            </article>
+            <article id="Artes" class="mt-5 row">
+                <h3 class="text-center">Artes</h3>
+                <div class="col-md-6">
+                    <img width="60%"  src="https://www.thesportsdb.com/images/media/player/render/16x6771630310510.png" alt="Mauritania" loading="lazy">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="60%"  src="https://www.thesportsdb.com/images/media/player/cutout/9s8opt1628844333.png" alt="Mauritania" loading="lazy">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="https://www.thesportsdb.com/images/media/player/fanart/vsywsp1421580471.jpg" alt="Mauritania" loading="lazy">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="https://www.thesportsdb.com/images/media/player/fanart/t8ez191549398257.jpg" alt="Mauritania" loading="lazy">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="https://www.thesportsdb.com/images/media/player/fanart/uxd9mz1549398266.jpg" alt="Mauritania" loading="lazy">
+                    
+                </div>
+                <div class="col-md-6">
+                    <img width="100%"  src="https://www.thesportsdb.com/images/media/player/fanart/icrnu31549398274.jpg" alt="Mauritania" loading="lazy">
+                    
+                </div>
+            
+
+            </article>
+
 
         </div>
-        <div class="player-carreiras">
-            <h3 class="fw-bold">Conquistas</h3>
-
-
-            <div class="row card-player-carreiras">
-
-
-
-                <div>
-                    <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                    <p>Barcelona</p>
-                    <span>2000-2005</span>
-                </div>
-                <div>
-                    <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                    <p>Real madrid</p>
-                    <span>2000-2005</span>
-                </div>
-                <div>
-                    <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                    <p>Inter</p>
-                    <span>2000-2005</span>
-                </div>
-                <div>
-                    <img src="https://www.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png" alt="">
-                    <p>Arsenal</p>
-                    <span>2000-2005</span>
-                </div>
-
-            </div>
-
-
-
-
-
-        </div>
-
-
-
-
-</section>
+    </main>

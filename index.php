@@ -13,11 +13,12 @@ $router->get("/player/{idPlayer}", "PlayerController:player");
 $router->get("/alltimes", "TimesController:allTimes");
 $router->get("/{sports}/{league}/{team}", "TimesController:time");
 $router->get("/teste", "HomeController:teste");
+$router->get("/ops/{errcode}","ErroController:error");
 
 
 
 $router->dispatch();
 
-// if ($router->error()) {
-//     $router->redirect("/ops/{$router->error()}");
-// }
+if ($router->error()) {
+    $router->redirect("/ops/{$router->error()}");
+}

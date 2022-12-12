@@ -10,12 +10,14 @@ class PlayerController extends Web {
 
     public function player($data){
 
-        $PlayerDetails = Player::getPlayerDetailsById($data["idPlayer"]);
+        $id = (int) $data["idPlayer"];
+    
+        $PlayerDetails = Player::getPlayerDetailsById($id);
         $player = $PlayerDetails["players"][0];
+
 
         $this->view([
             "header",
-            "section_player",
             "player",
             "footer",
         ],[

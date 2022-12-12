@@ -10,143 +10,154 @@ $nextGames = Teams::getNextGamesByTeamId($time->idTeam)["events"];
 ?>
 
 
+<main id="content" style="height: 190rem;">
 
+    <div id="countryDetails" class="country-details">
+        <form>
 
+            <button id="backButton" onClick="JavaScript: window.history.back();" type="button" class="country-details__button">
+                Back
+            </button>
 
-<section class="container team-details">
+        </form>
 
-
-    <div class="team-sobre pt-3" id="sobre">
-        <h3 class="fw-bold">Sobre o <?= $time->strTeam ?></h3>
-        <p><?= $time->strDescriptionPT ? $time->strDescriptionPT : $time->strDescriptionEN  ?></p>
-    </div>
-
-    <div id="estadio" class="mt-5">
-        <h3 class="fw-bold">Estadio do <?= $time->strTeam  ?></h3>
-
-        <div class="estadio row">
-
-            <div class="col-lg-6">
-                <p>
-                    <?= substr($time->strStadiumDescription, 0, 1400) . "..." ?>
-                </p>
+        <article class="country-details__article mb-3">
+            <div class="country-details__img">
+                <img width="480" height="400" src="<?= $time->strTeamBadge  ?>" alt="Mauritania">
             </div>
-            <div class="col-lg-6">
-                <img width="100%" src="<?= $time->strStadiumThumb  ?>" alt="">
-            </div>
-        </div>
+            <div class="country-details__info">
+                <h1 class="country-details__info-title"><?= $time->strAlternate ? $time->strAlternate : $time->strTeam  ?></h1>
+                <div class="country-details__info-lists">
+                    <ul class="country-details__info-list">
+                        <li class="country-details__info-item">
+                            <span>Pais: </span> <?= $time->strCountry ?>
+                        </li>
+                        <li class="country-details__info-item">
+                            <span>Location: </span> <?= $time->strStadiumLocation  ?>
+                        </li>
+                        <li class="country-details__info-item">
+                            <span>Ligas: </span> <?= $time->strLeague ?>
+                            <span>,</span> <?= $time->strLeague2 ?>
+                            <span>,</span> <?= $time->strLeague3 ?>
+                        </li>
+                    </ul>
 
-    </div>
+                </div>
 
-    <div id="players" class="mt-5">
-        <h3 class="fw-bold">Jogadores do <?= $time->strTeam  ?></h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-
-                    <th scope="col">Nome</th>
-                    <th scope="col">Posição</th>
-                    <th scope="col">Nacionalidade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($playerInTeam != null) : ?>
-                    <?php for ($i = 0; $i < count($playerInTeam); $i++) : ?>
-
-                        <tr>
-                            <td>
-                                <!-- <img width="50px" src="<?= $playerInTeam[$i]->strCutout ? $playerInTeam[$i]->strCutout : $playerInTeam[$i]->strThumb  ?>" alt=""> -->
-                            <a class="link" target="_blank" href="<?= URL_BASE . "/player/" . $playerInTeam[$i]->idPlayer  ?>"><?= $playerInTeam[$i]->strPlayer  ?></a></td>
-                            <td><?= $playerInTeam[$i]->strPosition  ?></td>
-                            <td><?= $playerInTeam[$i]->strNationality  ?></td>
-                        </tr>
-
-                    <?php endfor;
-                else : ?>
-
-
-
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="mt-5" id="lastGames">
-        <h3 class="fw-bold">Ultimos jogos</h3>
-        <div class="historico">
-
-            <div class="games w-50">
-
-                <?php if ($lastGames != null) :  ?>
-
-
-                    <?php foreach ($lastGames as $games) :  ?>
-                        <table width="100%" class="mb-2" align="center" bgcolor="#ffffff" border="0" cellpadding="1" cellspacing="1">
-                            <tbody>
-                                <tr align="center" bgcolor="#DAA520">
-                                    <th width="42%" height="24px">
-                                        <font face="Segoe UI"><?= $games->strAwayTeam ?></font>
-                                    </th>
-                                    <th width="16%" bgcolor="#191970">
-                                        <font face="Verdana" color="#E0FFFF"><a href="<?= URL_BASE . "/games/$games->idEvent" ?>"><?= $games->intAwayScore ?> x <?= $games->intHomeScore ?></a></font>
-                                    </th>
-                                    <th width="42%" height="24px">
-                                        <font face="Segoe UI"><?= $games->strHomeTeam  ?></font>
-                                    </th>
-                                </tr>
-
-                        </table>
-
-                    <?php endforeach;  ?>
-
-
-
-                <?php else :  ?>
-
-
-                <p >Não conseguimos encontrar informações</p>
-
-                <?php endif;  ?>
+                <div class="country-details__border-countries">
+                    <h2 class="country-details__border-countries-title">
+                        Outros:
+                    </h2>
+                    <ul class="country-details__border-countries-list">
+                        <li class="country-details__border-countries-item">Jogadores</li>
+                        <li class="country-details__border-countries-item">Proximos jogos</li>
+                        <li class="country-details__border-countries-item">Ultimos jogos</li>
+                        <li class="country-details__border-countries-item">Artes</li>
+                    </ul>
+                </div>
 
             </div>
+        </article>
 
-        </div>
 
-    </div>
-    <div class="mt-5" id="nextGames">
-        <h3 class="fw-bold">Proximos jogos</h3>
-        <div class="historico">
+        <article class="mt-5">
+            <h3 class="text-center">Jogadores do <?= $time->strTeam ?></h3>
+            <table class="table table-striped mt-5">
+                <thead>
+                    <tr>
 
-            <div class="games row">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Posição</th>
+                        <th scope="col">Nacionalidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if ($playerInTeam != null) : ?>
+                        <?php for ($i = 0; $i < count($playerInTeam); $i++) : ?>
+
+                            <tr>
+                                <td>
+                                    <a class="link" target="_blank" href="<?= URL_BASE . "/player/" . $playerInTeam[$i]->idPlayer  ?>"><?= $playerInTeam[$i]->strPlayer  ?></a>
+                                </td>
+                                <td><?= $playerInTeam[$i]->strPosition  ?></td>
+                                <td><?= $playerInTeam[$i]->strNationality  ?></td>
+                            </tr>
+
+                        <?php endfor;
+                    else : ?>
+
+
+
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </article>
+
+
+        <article id="nextGames" class="mt-5">
+                        <h3 class="text-center">Proximos jogos do <?= $time->strTeam ?></h3>
+
+            <section id="countriesContainer" class="countries-container mt-5">
 
                 <?php if ($nextGames != null) :  ?>
+                    <?php foreach ($nextGames as $games) :  ?>
 
-                    <?php foreach ($nextGames as $games) : ?>
 
-                        <div class="col-md-2 mt-2">
+                        <article class=" none1 ">
 
-                            <div class="card w-100 h-100" style="max-width: 18rem;">
-                                <a href="<?= URL_BASE ?>/games/<?= $games->idEvent ?>">
-                                    <img src="<?= $games->strThumb ? $games->strThumb : URL_BASE ."/assets/img/default.webp"?>" class="card-img-top" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <span class="card-title  fw-bold"><?= $games->strEvent ?> </span> <br>
-                                    <span class="card-text mt-4"><?= $games->dateEvent  ?></span>
-                                </div>
+                            <div class="countries-container__card-info">
+                                <h1 class="countries-container__card-title"><?= $games->strEvent ?></h1>
+                                <p>Data: <?= date("d/M/Y",strtotime($games->dateEvent))  ?> </p>
+                                <p>Hora: <?= date("H:s",strtotime($games->strTime))  ?> </p>
                             </div>
-                        </div>
+                        </article>
 
 
-                    <?php endforeach; ?>
+                    <?php endforeach;  ?>
+                <?php else : ?>
+                    <p class="text-center">Não conseguimos encontrar informações suficientes para este jopgador</p>
+                <?php endif; ?>
 
-                <?php else :  ?>
-                    eror
-                <?php endif;  ?>
 
-            </div>
 
-        </div>
+            </section>
+
+        </article>
+
+        <article id="lastGames" class="mt-5">
+                        <h3 class="text-center">Ultimos 5 jogos do <?= $time->strTeam ?></h3>
+
+            <section id="countriesContainer" class="countries-container mt-5">
+
+                <?php if ($lastGames != null) :  ?>
+                    <?php foreach ($lastGames as $games) :  ?>
+
+
+                        <article class=" none1 ">
+
+                            <div class="countries-container__card-info">
+                                <h1 class="countries-container__card-title"><?= $games->strAwayTeam  ?> vs <?= $games->strHomeTeam    ?></h1>
+                                <p>Data: <?= date("d/m/Y",strtotime($games->dateEvent))  ?> </p>
+                                <p>Resultado : <?= $games->intAwayScore  ?> X  <?= $games->intHomeScore  ?></p>
+                            </div>
+                        </article>
+
+
+                    <?php endforeach;  ?>
+                <?php else : ?>
+                    <p class="text-center">Não conseguimos encontrar informações suficientes para este jopgador</p>
+                <?php endif; ?>
+
+
+
+            </section>
+
+        </article>
+
+
+
+
+
 
     </div>
-
-</section>
+</main>
