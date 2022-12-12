@@ -19,6 +19,6 @@ $router->get("/ops/{errcode}","ErroController:error");
 
 $router->dispatch();
 
-if ($router->error()) {
-    $router->redirect("/ops/{$router->error()}");
-}
+// if ($router->error()) {
+//     $router->redirect("/ops/{$router->error()}");
+// }
