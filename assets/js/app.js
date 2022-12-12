@@ -54,7 +54,7 @@ $("#searchForm").on("submit", function (e) {
     
           <div class="countries-container__card-info">
             <h1 class="countries-container__card-title">${el.strPlayer}</h1>
-            <a class="countries-container__card-link"  ?> href=" ${URL_BASE}/player/${el.idPlayer}">View player</a>
+            <a class="countries-container__card-link" href="ola" >View player</a>
           </div>
         </article>
     

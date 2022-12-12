@@ -31,7 +31,7 @@ $tradutor = new GoogleTranslate;
 
           <div class="countries-container__card-info">
             <h1 class="countries-container__card-title"><?= $player[0]->strPlayer ?></h1>
-            <a class="countries-container__card-link" onclick="getIdPlayer()" data-id="<?= $player[0]->idPlayer  ?>" href="<?= URL_BASE ?>/player/<?= $player[0]->idPlayer  ?>">View player</a>
+            <a class="countries-container__card-link" href="<?= URL_BASE ?>/player/<?= $player[0]->idPlayer  ?>">View player</a>
           </div>
         </article>
 
